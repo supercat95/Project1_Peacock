@@ -28,7 +28,11 @@ void draw() {
   bodyOfPeacock(-1*QUARTER_PI); // facing left
   facingLeft(5,13, 11,19, 15,24); // values are the shifts from original/rightmost feather
  
-  bodyOfPeacock(QUARTER_PI); 
+  // figuring out how to "flip"
+  pushMatrix();
+     scale(-1.0,1.0);
+      bodyOfPeacock(-1*QUARTER_PI); 
+  popMatrix();
   
   // for debugging and drawing purposes
   pushMatrix();
