@@ -26,11 +26,9 @@ void draw() {
   //background(#C9FFFC); // pastel blue
   background(#FCE5FF); // light pink
  
-  bodyOfPeacock(-1*QUARTER_PI); // facing left
+  bodyOfPeacock(-1*QUARTER_PI); // facing left, and used for facing right
   facingLeft(5,13, 11,19, 15,24); // values are the shifts from original/rightmost feather
- 
   facingRight();
-  
   
   // for debugging and drawing purposes
   pushMatrix();
@@ -45,10 +43,19 @@ void draw() {
 void bodyOfPeacock(float rotation) {
   pushMatrix();
     noStroke();
-    fill(2, 175, 32); // green
     rotate(rotation);
-      ellipse((width/2) - 350, (height/2) + 150, left_EllipseWidth,left_EllipseHeight);
-  popMatrix();
+    // creates 4 ellipses of decrementing sizes and alternating colors
+     int increment = 1;
+     for (int i = 0; i <= 40; i += 10) {
+       if (i % 20 == 0) {
+        fill(2, 175, 32); // darker green
+       }
+       else {
+        fill (61, 216, 122); // lighter green
+       }
+       ellipse((width/2) - 350, (height/2) + 150, left_EllipseWidth - (increment*i), left_EllipseHeight - (increment*i));
+     }  
+   popMatrix();
 }
 
 // ------------------------------------------------------
