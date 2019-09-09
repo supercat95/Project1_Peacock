@@ -18,8 +18,11 @@ int y3Feather = 280;
 int x4Feather = 350;
 int y4Feather = 290;
 
+PImage featherEye;
+
 void setup() {
   size (600,600); // can be changed
+  featherEye = loadImage("teardropShape.png");
 }
 
 void draw() {
@@ -61,6 +64,7 @@ void bodyOfPeacock(float rotation) {
 // ------------------------------------------------------
 // feathers
 void facingLeft(int xchange1,int ychange1, int xchange2,int ychange2, int xchange3,int ychange3) {
+  // feather strokes
   pushMatrix();
       stroke(0,156,232); // bright blue color
       noFill();
@@ -72,6 +76,32 @@ void facingLeft(int xchange1,int ychange1, int xchange2,int ychange2, int xchang
         bezier(x1Feather-xchange2,y1Feather-ychange2, x2Feather-xchange2,y2Feather-ychange2, x3Feather-xchange2,y3Feather-ychange2, x4Feather-xchange2,y4Feather-ychange2);
         // leftmost feather
         bezier(x1Feather-xchange3,y1Feather-ychange3, x2Feather-xchange3,y2Feather-ychange3, x3Feather-xchange3,y3Feather-ychange3, x4Feather-xchange3,y4Feather-ychange3);
+  popMatrix();
+  
+  // feather eyes
+  // bottom most/ rightmost eye
+  pushMatrix();
+    translate(345, 298);
+    rotate(-1.5);
+        image(featherEye, 0,0, 15,15);
+  popMatrix();
+  // 2nd from bottom/ 2nd from right eye
+  pushMatrix();
+    translate(342, 285);
+    rotate(-1.5);
+      image(featherEye, 0,0, 15,15);
+  popMatrix();
+  // 3rd from bottom/ 3rd from right eye
+  pushMatrix();
+    translate(338, 279);
+    rotate(-1.5);
+      image(featherEye, 0,0, 15,15);
+  popMatrix();
+  // top/ leftmost eye
+  pushMatrix();
+    translate(333, 274);
+    rotate(-1.5);
+      image(featherEye, 0,0, 15,15);
   popMatrix();
 }
 
