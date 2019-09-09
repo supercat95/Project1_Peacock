@@ -30,6 +30,7 @@ void draw() {
   background(#FCE5FF); // light pink
  
   bodyOfPeacock(-1*QUARTER_PI); // facing left, and used for facing right
+  legsOfPeacock();
   facingLeft(5,13, 11,19, 15,24); // values are the shifts from original/rightmost feather
   facingRight();
   
@@ -61,6 +62,16 @@ void bodyOfPeacock(float rotation) {
    popMatrix();
 }
 
+void legsOfPeacock() {
+   pushMatrix();
+     stroke(0,156,232); // same color as feather strokes
+     noFill();
+     translate(288, 377); // to bottom of ellipse of body
+       line(0,0, -10,16); // left leg
+       line(0,0, 10,16); // right leg       
+   popMatrix();
+}
+
 // ------------------------------------------------------
 // feathers
 void facingLeft(int xchange1,int ychange1, int xchange2,int ychange2, int xchange3,int ychange3) {
@@ -81,7 +92,7 @@ void facingLeft(int xchange1,int ychange1, int xchange2,int ychange2, int xchang
   // feather eyes
   // bottom most/ rightmost eye
   pushMatrix();
-    translate(345, 298);
+    translate(345, 298); // to the end of the feather stroke
     rotate(-1.5);
         image(featherEye, 0,0, 15,15);
   popMatrix();
@@ -111,6 +122,7 @@ void facingRight() {
      scale(-1.0,1.0);
      translate(-600,0);
        bodyOfPeacock(-1*QUARTER_PI); 
+       legsOfPeacock();
        facingLeft(5,13, 11,19, 15,24);
   popMatrix();
 }
