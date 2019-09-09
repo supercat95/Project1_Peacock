@@ -23,16 +23,14 @@ void setup() {
 }
 
 void draw() {
-  background(#C9FFFC); // pastel blue
+  //background(#C9FFFC); // pastel blue
+  background(#FCE5FF); // light pink
  
   bodyOfPeacock(-1*QUARTER_PI); // facing left
   facingLeft(5,13, 11,19, 15,24); // values are the shifts from original/rightmost feather
  
-  // figuring out how to "flip"
-  pushMatrix();
-     scale(-1.0,1.0);
-      bodyOfPeacock(-1*QUARTER_PI); 
-  popMatrix();
+  facingRight();
+  
   
   // for debugging and drawing purposes
   pushMatrix();
@@ -54,10 +52,10 @@ void bodyOfPeacock(float rotation) {
 }
 
 // ------------------------------------------------------
-void facingLeft(int xchange1,int ychange1, int xchange2,int ychange2, int xchange3,int ychange3) {
 // feathers
+void facingLeft(int xchange1,int ychange1, int xchange2,int ychange2, int xchange3,int ychange3) {
   pushMatrix();
-      stroke(0,0,0); // temp
+      stroke(0,156,232); // bright blue color
       noFill();
         // rightmost feather
         bezier(x1Feather,y1Feather, x2Feather,y2Feather, x3Feather,y3Feather, x4Feather,y4Feather);
@@ -70,8 +68,14 @@ void facingLeft(int xchange1,int ychange1, int xchange2,int ychange2, int xchang
   popMatrix();
 }
 
+// mirror image of facingLeft
 void facingRight() {
-  // rotation of facingLeft() ?
+  pushMatrix();
+     scale(-1.0,1.0);
+     translate(-600,0);
+       bodyOfPeacock(-1*QUARTER_PI); 
+       facingLeft(5,13, 11,19, 15,24);
+  popMatrix();
 }
 
 void facingAway() {
