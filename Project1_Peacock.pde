@@ -40,7 +40,7 @@ void draw() {
   eyesOfFeathers(333, 274); // top/ leftmost eye
   
   facingLeft(5,13, 11,19, 15,24); // values are the shifts from original/rightmost feather
-  //facingRight();
+  facingRight();
   
   // for debugging and drawing purposes
   pushMatrix();
@@ -56,8 +56,17 @@ void headAndNeck() {
   pushMatrix();
     fill(2, 175, 32); // same darker green color as body
     noStroke();
-    rotate(rotation);
-      rect((width/2) - 263, (height/2) + 339, 10, 30);
+    rotate(rotation*.6);
+      // neck
+      rect((width/2) - 220,(height/2) + 80, 10,60);
+     
+     // head
+     fill(61, 216, 122); // same lighter green color as body
+     ellipse((width/2) - 220,(height/2) + 73, 25,25);
+     
+     // eye
+     fill(0,0,0);
+     ellipse((width/2) - 220,(height/2) + 70, 5,5);
   popMatrix();
 }
 
@@ -123,6 +132,10 @@ void facingRight() {
        bodyOfPeacock(); 
        legsOfPeacock();
        facingLeft(5,13, 11,19, 15,24);
+       eyesOfFeathers(345, 298); 
+       eyesOfFeathers(342, 285); 
+       eyesOfFeathers(338, 279); 
+       eyesOfFeathers(333, 274); 
   popMatrix();
 }
 
