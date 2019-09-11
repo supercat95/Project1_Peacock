@@ -5,7 +5,6 @@
 */
 
 float rotation = -1*QUARTER_PI;
-int correctionForRotation; // do trig to find this. 
 int left_EllipseWidth = 40;
 int left_EllipseHeight = 55;
 
@@ -21,34 +20,50 @@ int y4Feather = 290;
 
 PImage featherEye;
 
+int[] xPeacockCoordsLeft = new int[6];
+int[] yPeacockCoordsLeft = new int[6];
+int[] xPeacockCoordsRight = new int[6];
+int[] yPeacockCoordsRight = new int[6];
+
 void setup() {
-  size (600,600); // can be changed
+  size (600,600);
   featherEye = loadImage("teardropShape.png");
+  
+  // initializes variables for arrays
+  for (int i = 0; i < 6; i ++) {
+    xPeacockCoordsLeft[i] = int(random(-200,200));
+    yPeacockCoordsLeft[i] = int(random(-240,185));
+    
+    xPeacockCoordsRight[i] = int(random(-200,200));
+    yPeacockCoordsRight[i] = int(random(-240,185));
+  }
 }
 
 void draw() {
-  //background(#C9FFFC); // pastel blue
-  background(#FCE5FF); // light pink
- 
-  headAndNeck();
-  bodyOfPeacock(); // facing left, and used for facing right
-  legsOfPeacock();
+  background(#C9FFFC); // pastel blue "border"
+  fill(#FCE5FF); // light pink
+  rect(25,25, 550,550);
   
-  eyesOfFeathers(345, 298); // bottom most/ rightmost eye
-  eyesOfFeathers(342, 285); // 2nd from bottom/ 2nd from right eye
-  eyesOfFeathers(338, 279); // 3rd from bottom/ 3rd from right eye
-  eyesOfFeathers(333, 274); // top/ leftmost eye
-  
-  facingLeft(5,13, 11,19, 15,24); // values are the shifts from original/rightmost feather
-  facingRight();
-  
-  // for debugging and drawing purposes
-  pushMatrix();
-    //translate(100,500);
-    text(pmouseX, 100, 500);
-    //translate(5,0);
-    text(pmouseY, 130, 500);
-  popMatrix();
+  // generates 12 peacock at random locations
+  for (int i = 0; i < 6; i ++) {
+    pushMatrix();
+      translate(xPeacockCoordsLeft[i],yPeacockCoordsLeft[i]);
+        headAndNeck();
+        bodyOfPeacock(); // facing left, and used for facing right
+        legsOfPeacock();
+        
+        eyesOfFeathers(345, 298); // bottom most/ rightmost eye
+        eyesOfFeathers(342, 285); // 2nd from bottom/ 2nd from right eye
+        eyesOfFeathers(338, 279); // 3rd from bottom/ 3rd from right eye
+        eyesOfFeathers(333, 274); // top/ leftmost eye
+        
+        facingLeft(5,13, 11,19, 15,24); // values are the shifts from original/rightmost feather
+    popMatrix();
+    pushMatrix();
+      translate(xPeacockCoordsRight[i],yPeacockCoordsRight[i]);
+        facingRight();
+    popMatrix();
+  }
 }
 
 // ------------------------------------------------------
@@ -123,6 +138,7 @@ void facingLeft(int xchange1,int ychange1, int xchange2,int ychange2, int xchang
   popMatrix();
 }
 
+// ------------------------------------------------------
 // mirror image of facingLeft
 void facingRight() {
   pushMatrix();
@@ -137,23 +153,4 @@ void facingRight() {
        eyesOfFeathers(338, 279); 
        eyesOfFeathers(333, 274); 
   popMatrix();
-}
-
-void facingAway() {
-  
-}
-
-void facingForward() {
-  
-}
-
-// ------------------------------------------------------
-// peacock follows the cursor 
-void followUser() {
-  
-}
-
-// determines which facing function should be called
-void whichDirection() {
-  // booleans
 }
